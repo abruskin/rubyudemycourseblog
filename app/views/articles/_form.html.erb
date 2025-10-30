@@ -1,27 +1,39 @@
-<%= form_with(model: article) do |form| %>
-  <% if article.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-      <ul>
-        <% article.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+ 
+
+
+
+  <div class="row justify-content-center">
+  <div class="col-10">
+  <%= render 'shared/errors' %>
+  <%= form_with(model: article, class:"shadow p-3 mb-5 bg-white rounded", local:true) do |form| %>
+    <div class="form-group-row">
+  <div class="col-2">
+    <%= form.label :title, class: "col-form-label" %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <div class="col-10">
+    <%= form.text_field :title, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description %>
+  <div class="form-group-row">
+  <div class="col-2">
+    <%= form.label :description, class: "col-form-label" %>
+    </div>
+    <div class="col-10">
+    <%= form.textarea :description, rows:10, class:"form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group row">
+    <%= form.submit class:"btn btn-outline-primary"%>
   </div>
+
+  
+
+  
 <% end %>
+  <%= link_to "Back to articles", articles_path, class: "link-primary" %>
+
+</div>
+</div>

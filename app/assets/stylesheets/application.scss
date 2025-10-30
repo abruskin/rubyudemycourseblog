@@ -1,5 +1,11 @@
-@import "bootstrap";
+@import 'bootstrap';
+require jquery-ui
+
 /*
+
+NOTE: BOOTSTRAP DOES NOT WORK WELL WITH RUBY
+Save yourself the hassle, don't try to make it work
+
  * This is a manifest file that'll be compiled into application.css.
  *
  * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
@@ -9,3 +15,50 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.navbar {
+    background-color: black !important;
+    
+}
+.nav-link {
+    color: white !important;
+}
+
+#logo {
+    color: hotpink !important;
+    letter-spacing: -2px;
+    font-weight: bold;
+    font-size: 1.7em;
+    float: left;
+}
+
+#jumbotron{
+    background-image: url("jellyfish.jpg");
+    background-size: inherit;
+    margin-top: 20px;
+    color: white;
+    height: 425px;
+}
+html,
+body{
+    height: 100%;
+}
+#page-content {
+    flex: 1 0 auto;
+}
+
+#sticky-footer {
+    flex-shrink: none;
+}
+.link-primary {
+    color: hotpink !important;
+    text-decoration: none
+}
+
+.btn-outline-primary{
+    color: hotpink !important;
+    border-color: hotpink !important;
+}
+
+.col-form-label{
+    text-align: right !important
+}

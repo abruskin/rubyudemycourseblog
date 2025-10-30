@@ -23,20 +23,20 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
-    respond_to do |format|
+  
       if @article.save
-        format.html { redirect_to @article, notice: "Article was successfully created." }
-        format.json { render :show, status: :created, location: @article }
+        flash[:notice]=  "Article was successfully created." 
+        redirect_to article_path(@article) 
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+       render 'new', status: :unprocessable_entity 
+        
       end
-    end
+    
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    respond_to do |format|
+   
       if @article.update(article_params)
         format.html { redirect_to @article, notice: "Article was successfully updated." }
         format.json { render :show, status: :ok, location: @article }
@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
-    end
+    
   end
 
   # DELETE /articles/1 or /articles/1.json
