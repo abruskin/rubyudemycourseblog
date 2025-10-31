@@ -1,0 +1,15 @@
+<div class="container">
+    <h1 class="text-center mt-4"><%= @user.username %>'s Profile</h1>
+    <div class="text-center mt-4">
+        <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-info" %>
+    </div>
+    <h2 class="text-center mt-4">Articles</h2>
+    <div class="flickr_pagination d-flex justify-content-center mb-5">
+    <%= will_paginate @articles %>
+    </div>
+    <%= render 'articles/article_mini' %>
+</div>
+
+<div class="flickr_pagination d-flex justify-content-center mb-5">
+  <%= will_paginate @articles %>
+</div>
