@@ -1,12 +1,16 @@
-
-
 <% content_for :title, "Articles" %>
 
 <h1 class="text-center mt-4">Articles</h1>
+<div class="flickr_pagination d-flex justify-content-center">
+  <%= will_paginate @articles %>
+</div>
 <div class="container"> 
-<div id="articles">
- <%= render 'article_mini' %> 
+  <div id="articles" >
+  <%= render 'article_mini' %> 
   </div>
 </div>
 
-<%= link_to "New article", new_article_path %>
+<div class="flickr_pagination d-flex justify-content-center mb-5">
+  <%= will_paginate @articles %>
+</div>
+
