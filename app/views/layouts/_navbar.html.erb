@@ -5,6 +5,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <% if logged_in? %>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <%= link_to "Articles", articles_path, class: "nav-link" %>
@@ -13,15 +14,32 @@
           <%= link_to "Bloggers", users_path, class: "nav-link" %>
         </li>
         
-        <li class="nav-item"> <%= link_to "New Article", new_article_path, class: "nav-link" %> </li>
+        <li class="nav-item"> 
+          <%= link_to "New Article", new_article_path, class: "nav-link" %> 
+        </li>
+        
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      
+        <%= link_to current_user.username, user_path(current_user),  class:"btn btn-outline-danger" %>
+        <%= button_to 'Log out', logout_path, method: :delete, class:"btn btn-outline-danger", type: "submit" %>
+      <% else %>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Articles", articles_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Bloggers", users_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+        <%= link_to 'Log in', login_path, class:"btn btn-outline-success", type: "submit" %>
+         <%= link_to 'Sign up', signup_path, class:"btn btn-outline-success", type: "submit" %>
+      <% end %>
     </div>
   </div>
 </nav>

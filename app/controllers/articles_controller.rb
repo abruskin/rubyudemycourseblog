@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
+  #code executes top down, so pay attention to order of the before actions
   before_action :set_article, only: [ :show, :edit, :update, :destroy ]
-  
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   # GET /articles or /articles.json
   def index
     @articles = Article.paginate(page: params[:page], per_page: 6)
@@ -22,7 +24,7 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
 
       if @article.save
         flash[:notice]=  "Article was successfully created." 
@@ -64,5 +66,12 @@ class ArticlesController < ApplicationController
     def article_params
       params.expect(article: [ :title, :description ])
     end
+
+    def require_same_user
+      if current_user != @article.user && !current_user.admin?
+        flash[:alert] = "You can only edit or delete your own articles"
+        redirect_to @article
+      end 
+    end 
 
 end
