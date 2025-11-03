@@ -12,12 +12,20 @@
             <div class="card-body">
                 <p class="card-text"><%=pluralize(user.articles.count, "article")%>
                 <%= link_to "View profile", user, class: "btn btn-outline-success" %>
-                <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+                <% if logged_in? %>
+                    <% if current_user.admin? %>
+                        <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+                        <%= button_to "Delete profile", user_path(user), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-outline-danger" %>
+                        <% end %>
+                    <% else if user == current_user  %>
+                        <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+                    <% end %>
+                <% end %>
                 </p>
             </div>
 
             <div class="card-footer">
-                <small>Joined <%= time_ago_in_words(user.created_at) %></small>
+                <small>Joined <%= time_ago_in_words(user.created_at) %> ago </small>
             </div>
         </div>
     </div>
