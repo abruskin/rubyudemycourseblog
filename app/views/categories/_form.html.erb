@@ -1,0 +1,18 @@
+
+<div class="col-10">
+    <%= render 'shared/errors', obj: @category %>
+    <%= form_with(model: @category, class: "shadow p-3 mb-3 rounded", local:true) do |form| %>
+    
+    <div class="form-group-row">
+        <%= form.label :name, class: "col-form-label" %>
+        <div class="col-10">
+            <%= form.text_field :name,  class: "form-control" , placeholder: "Enter a category"%>
+        </div>
+    </div>
+
+
+  <div class="form-group row mt-3">
+    <%= form.submit class:"btn btn-outline-primary"%>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+    <h1 class="text-center mt-4"><%= @category.name %></h1>
+    
+    <div class="text-center mt-4">
+        <% if logged_in? && current_user.admin? %>
+          <%= link_to "Edit category name", edit_category_path(@category), class: "btn btn-outline-info" %>
+          <% end if %>
+    </div>
+    <h2 class="text-center mt-4">Articles</h2>
+    <div class="flickr_pagination d-flex justify-content-center mb-5">
+    <%= will_paginate @articles %>
+    </div>
+    <%= render 'articles/article_mini' %>
+</div>
+
+<div class="flickr_pagination d-flex justify-content-center mb-5">
+  <%= will_paginate @articles %>
+</div>
+
+
